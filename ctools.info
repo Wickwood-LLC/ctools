@@ -1,7 +1,7 @@
 name = Chaos tools
 description = A library of helpful tools by Merlin of Chaos. WWM manually applied https://www.drupal.org/node/1249684#comment-9715461
 core = 7.x
-version = 1.7
+version = 1.9
 package = Chaos tool suite
 files[] = includes/context.inc
 files[] = includes/css-cache.inc
