@@ -52,7 +52,7 @@ function page_manager_user_edit_menu_alter(&$items, $task) {
     $items['user/%user/edit']['page arguments'] = array(1);
     $items['user/%user/edit']['file path'] = $task['path'];
     $items['user/%user/edit']['file'] = $task['file'];
-    if (($categories = _user_categories()) && (count($categories) > 1)) {
+    /*if (($categories = _user_categories()) && (count($categories) > 1)) {
       foreach ($categories as $key => $category) {
         // 'account' is already handled by the MENU_DEFAULT_LOCAL_TASK.
         if ($category['name'] != 'account') {
@@ -62,7 +62,7 @@ function page_manager_user_edit_menu_alter(&$items, $task) {
           $items['user/%user_category/edit/' . $category['name']]['file'] = $task['file'];
         }
       }
-    }
+    }*/
   }
   else {
     // Automatically disable this task if it cannot be enabled.
