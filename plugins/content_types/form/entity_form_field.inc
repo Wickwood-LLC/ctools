@@ -110,7 +110,7 @@ function ctools_entity_form_field_content_type_render($subtype, $conf, $panel_ar
 
   // Check for field groups.
   if (empty($field) && module_exists('field_group')) {
-    $groups = field_group_info_groups($entity_type, $entity->type, "form");
+    $groups = field_group_info_groups($entity_type, $ids[2], "form");
     $group = !empty($groups[$field_name]) ? $groups[$field_name] : NULL;
   }
 
