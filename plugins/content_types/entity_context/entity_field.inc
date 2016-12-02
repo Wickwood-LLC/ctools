@@ -140,6 +140,11 @@ function ctools_entity_field_content_type_render($subtype, $conf, $panel_args, $
   $clone = clone $entity;
   $all_values = field_get_items($entity_type, $entity, $field_name, $language);
 
+  // Do not render if there is no field value present.
+  if (empty($all_values)) {
+    return;
+  }
+
   if (is_array($all_values)) {
     // Reverse values.
     if (isset($conf['delta_reversed']) && $conf['delta_reversed']) {
