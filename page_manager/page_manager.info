@@ -6,3 +6,6 @@ package = Chaos tool suite
 version = CTOOLS_MODULE_VERSION
 
 files[] = tests/head_links.test
+
+version = "7.x-1.14"
+project = "ctools"

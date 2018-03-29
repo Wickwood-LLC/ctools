@@ -5,3 +5,6 @@ package = Chaos tool suite
 version = CTOOLS_MODULE_VERSION
 dependencies[] = ctools
 dependencies[] = color
+
+version = "7.x-1.14"
+project = "ctools"
