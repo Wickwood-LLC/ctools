@@ -1416,17 +1416,18 @@ function ctools_context_get_context_from_relationships($relationships, &$context
     if (is_array($rdata['context'])) {
       $rcontexts = array();
       foreach ($rdata['context'] as $cid) {
-        if (empty($contexts[$cid])) {
+        if (empty($contexts[$cid]) && $cid != 'empty') {
           continue 2;
         }
-        $rcontexts[] = $contexts[$cid];
+        $rcontexts[] = !empty($contexts[$cid])? $contexts[$cid] : NULL;
       }
     }
     else {
-      if (empty($contexts[$rdata['context']])) {
+      $cid = $rdata['context'];
+      if (empty($contexts[$cid]) && $cid != 'empty') {
         continue;
       }
-      $rcontexts = $contexts[$rdata['context']];
+      $rcontexts = !empty($contexts[$cid])? $contexts[$cid] : NULL;
     }
 
     $cid = ctools_context_id($rdata, 'relationship');
