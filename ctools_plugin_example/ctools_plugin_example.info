@@ -6,3 +6,6 @@ dependencies[] = panels
 dependencies[] = page_manager
 dependencies[] = advanced_help
 core = 7.x
+
+version = "7.x-1.15"
+project = "ctools"

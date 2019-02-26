@@ -5,3 +5,6 @@ dependencies[] = ctools
 package = Chaos tool suite
 
 files[] = tests/head_links.test
+
+version = "7.x-1.15"
+project = "ctools"

@@ -3,3 +3,6 @@ description = Controls access to context based upon term depth
 core = 7.x
 dependencies[] = ctools
 package = Chaos tool suite
+
+version = "7.x-1.15"
+project = "ctools"
