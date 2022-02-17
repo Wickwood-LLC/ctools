@@ -60,8 +60,10 @@ function views_content_view_from_argument_context($contexts, $conf) {
   list($view_name, $display_id) = explode('-', $view_data);
   $keys = array_keys($conf['context']);
 
-  if (empty($contexts[$keys[0]]->data)) {
-    return ctools_context_create_empty('view', NULL);
+  foreach ($contexts as $context) {
+    if ($context && $context->empty) {
+      return ctools_context_create_empty('view', NULL);
+    }
   }
 
   // Load our view up.
@@ -70,31 +72,33 @@ function views_content_view_from_argument_context($contexts, $conf) {
     // Set the display.
     $data->set_display($display_id);
     $context_keys = array_keys($contexts);
+    $arguments = $data->display_handler->get_option('arguments');
+
     foreach ($data->display_handler->get_argument_input() as $id => $argument) {
       if ($argument['type'] == 'context') {
         $key = array_shift($context_keys);
         if (isset($contexts[$key])) {
           if (strpos($argument['context'], '.')) {
             list($context, $converter) = explode('.', $argument['context'], 2);
-            $args[] = ctools_context_convert_context($contexts[$key], $converter, array('sanitize' => FALSE));
+            $arg = ctools_context_convert_context($contexts[$key], $converter, array('sanitize' => FALSE));
+            $args[] = $arg !== NULL? $arg :
+              (isset($arguments[$id]['exception']['value'])? $arguments[$id]['exception']['value'] : 'all');
           }
           else {
-            $args[] = $contexts[$key]->argument;
+            $args[] = $contexts[$key]->argument !== NULL? $contexts[$key]->argument :
+              (isset($arguments[$id]['exception']['value'])? $arguments[$id]['exception']['value'] : 'all');
           }
+        } else {
+          $args[] = isset($arguments[$id]['exception']['value'])? $arguments[$id]['exception']['value'] : 'all';
         }
       }
     }
-    // Remove any trailing NULL arguments as these are non-args:
-    while (count($args) && end($args) === NULL) {
-      array_pop($args);
-    }
+
     $data->set_arguments($args);
     if ($path = $data->display_handler->get_option('inherit_panels_path')) {
       $data->override_path = $_GET['q'];
     }
   }
 
-  if (isset($contexts[$keys[0]]->data)) {
-    return ctools_context_create('view', $data);
-  }
+  return ctools_context_create('view', $data);
 }
