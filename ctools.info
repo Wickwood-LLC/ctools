@@ -18,3 +18,6 @@ files[] = tests/math_expression_stack.test
 files[] = tests/object_cache.test
 files[] = tests/object_cache_unit.test
 files[] = tests/page_tokens.test
+
+version = "7.x-1.20"
+project = "ctools"

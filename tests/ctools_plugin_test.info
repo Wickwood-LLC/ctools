@@ -4,3 +4,6 @@ package = Chaos tool suite
 core = 7.x
 dependencies[] = ctools
 hidden = TRUE
+
+version = "7.x-1.20"
+project = "ctools"

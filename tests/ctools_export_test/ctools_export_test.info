@@ -6,3 +6,6 @@ dependencies[] = ctools
 hidden = TRUE
 
 files[] = ctools_export.test
+
+version = "7.x-1.20"
+project = "ctools"
